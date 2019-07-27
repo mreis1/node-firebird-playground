@@ -1,5 +1,5 @@
 {
-  "name": "heitz-cloud-sync",
+  "name": "node-firebird-playground",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -12,7 +12,8 @@
   "license": "ISC",
   "dependencies": {
     "node-firebird": "^0.8.6",
-    "node-firebird-dev": "git+https://github.com/sdnetwork/node-firebird.git"
+    "node-firebird-dev": "git+https://github.com/sdnetwork/node-firebird.git",
+    "yargs": "^13.3.0"
   },
   "devDependencies": {
     "@types/node": "^12.6.8"

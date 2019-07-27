@@ -1,9 +1,6 @@
+import {options} from './options';
 var Firebird = require('node-firebird-dev');
 //var Firebird = require('node-firebird');
-
-
-
-
 
 let ISOLATION = {
     READ_UNCOMMITTED: Firebird.ISOLATION_READ_UNCOMMITTED,
@@ -13,25 +10,42 @@ let ISOLATION = {
     READ_COMMITED_READ_ONLY: Firebird.ISOLATION_READ_COMMITED_READ_ONLY
 };
 
+//https://github.com/yargs/yargs/blob/master/docs/advanced.md
+const argv = require('yargs')
+    .command({
+        command: 'run <key> [value]',
+        aliases: [],
+        desc: 'Runs a sample',
+        builder: (yargs) => {
+            console.log(yargs);
+            return yargs.default('value', 'true')
+        },
+        handler: (argv) => {
+            console.log(`setting ${argv.key} to ${argv.value}`)
+        }
+    })
+    .option('db', {
+        default: 1
+    })
+    .option('pagesize', {
+        default: 1024 * 16
+    })
+    .option('verbose', {
+        alias: 'v',
+        default: false
+    })
+    .help()
+    .argv as any;
 
 
-var str = [];
-str[0] = '192.168.0.195';
-str[1] = 'C:\\DBS\\TEST_UTF8.fdb';
+if (argv.db === 2) {
+    options.database = 'C:\\DBS\\TEST_8859_1.fdb';
+} else {
+    options.database = 'C:\\DBS\\TEST_UTF8.fdb';
+}
 
+console.log(options);
 
-//var str = '192.168.0.190:V12_GESTION';
-//var str = process.env['FB_DB'].split(':');
-var options = {} as any;
-options.host = str[0];
-options.port = 3050;
-options.database = str[1];
-options.user = process.env['FB_USER'];
-options.password = process.env['FB_PASSWORD'];
-options.lowercase_keys = false; // set to true to lowercase keys
-options.role = null;            // default
-options.pageSize = 4096;        // default w
-console.log(options)
 // 5 = the number is count of opened sockets
 var pool = Firebird.pool(5, options, (err) => {
     if (err) {
