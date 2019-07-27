@@ -1,0 +1,20 @@
+{
+  "name": "heitz-cloud-sync",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc",
+    "build:w": "tsc --watch",
+    "start": "node ./dist/ --experimental-modules"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "node-firebird": "^0.8.6",
+    "node-firebird-dev": "git+https://github.com/sdnetwork/node-firebird.git"
+  },
+  "devDependencies": {
+    "@types/node": "^12.6.8"
+  }
+}
