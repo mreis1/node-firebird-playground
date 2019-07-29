@@ -4,9 +4,12 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "start:9958_1:prod": "node ./dist/ run --db=1 --fbm=1 --experimental-modules",
+    "start:9958_1:dev": "node ./dist/ run --db=1 --fbm=2 --experimental-modules",
+    "start:utf8:prod": "node ./dist/ run --db=2 --fbm=1 --experimental-modules",
+    "start:utf8:dev": "node ./dist/ run --db=2 --fbm=2 --experimental-modules",
     "build": "tsc",
-    "build:w": "tsc --watch",
-    "start": "node ./dist/ --experimental-modules"
+    "build:w": "tsc --watch"
   },
   "author": "",
   "license": "ISC",
